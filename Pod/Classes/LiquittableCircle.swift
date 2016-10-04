@@ -22,8 +22,8 @@ class LiquittableCircle : UIView {
             setup()
         }
     }
-    var color: UIColor = UIColor.redColor()
-    var growColor: UIColor = UIColor.whiteColor()
+    var color: UIColor = UIColor.red
+    var growColor: UIColor = UIColor.white
 
     init(center: CGPoint, radius: CGFloat, color: UIColor, growColor: UIColor?) {
         let frame = CGRect(x: center.x - radius, y: center.y - radius, width: 2 * radius, height: 2 * radius)
@@ -40,30 +40,30 @@ class LiquittableCircle : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func move(dt: CGPoint) {
+    func move(_ dt: CGPoint) {
         let point = CGPoint(x: center.x + dt.x, y: center.y + dt.y)
         self.center = point
     }
 
-    private func setup() {
+    fileprivate func setup() {
         self.frame = CGRect(x: center.x - radius, y: center.y - radius, width: 2 * radius, height: 2 * radius)
-        let bezierPath = UIBezierPath(ovalInRect: CGRect(origin: CGPointZero, size: CGSize(width: radius * 2, height: radius * 2)))
+        let bezierPath = UIBezierPath(ovalIn: CGRect(origin: CGPoint.zero, size: CGSize(width: radius * 2, height: radius * 2)))
         draw(bezierPath)
     }
 
-    func draw(path: UIBezierPath) {
+    func draw(_ path: UIBezierPath) {
         self.layer.sublayers?.each { $0.removeFromSuperlayer() }
         let layer = CAShapeLayer(layer: self.layer)
         layer.lineWidth = 3.0
-        layer.fillColor = self.color.CGColor
-        layer.path = path.CGPath
+        layer.fillColor = self.color.cgColor
+        layer.path = path.cgPath
         self.layer.addSublayer(layer)
         if isGrow {
             grow(true)
         }
     }
     
-    func grow(isGrow: Bool) {
+    func grow(_ isGrow: Bool) {
         if isGrow {
             grow(self.growColor, radius: self.radius, shininess: 1.6)
         } else {
@@ -72,7 +72,7 @@ class LiquittableCircle : UIView {
         }
     }
 
-    func circlePoint(rad: CGFloat) -> CGPoint {
+    func circlePoint(_ rad: CGFloat) -> CGPoint {
         return CGMath.circlePoint(center, radius: radius, rad: rad)
     }
 

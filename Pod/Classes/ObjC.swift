@@ -10,25 +10,25 @@ import Foundation
 import UIKit
 
 @objc public enum ObjCEffect: Int {
-    case Line
-    case Circle
-    case GrowLine
-    case GrowCircle
+    case line
+    case circle
+    case growLine
+    case growCircle
 }
 
 extension LiquidLoader {
     
-    @objc public convenience init(frame: CGRect, effect: ObjCEffect, color: UIColor, numberOfCircle: Int, duration: CGFloat, growColor: UIColor? = UIColor.redColor()) {
+    @objc public convenience init(frame: CGRect, effect: ObjCEffect, color: UIColor, numberOfCircle: Int, duration: CGFloat, growColor: UIColor? = UIColor.red) {
         var s: Effect
         
-        if effect == .Line {
-            s = Effect.Line(color, numberOfCircle, duration, growColor)
-        } else if effect == .Circle {
-            s = Effect.Circle(color, numberOfCircle, duration, growColor)
-        } else if effect == .GrowLine {
-            s = Effect.GrowLine(color, numberOfCircle, duration, growColor)
+        if effect == .line {
+            s = Effect.line(color, numberOfCircle, duration, growColor)
+        } else if effect == .circle {
+            s = Effect.circle(color, numberOfCircle, duration, growColor)
+        } else if effect == .growLine {
+            s = Effect.growLine(color, numberOfCircle, duration, growColor)
         } else { //if effect == .GrowCircle {
-            s = Effect.GrowCircle(color, numberOfCircle, duration, growColor)
+            s = Effect.growCircle(color, numberOfCircle, duration, growColor)
         }
         
         self.init(frame: frame, effect: s)
